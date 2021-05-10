@@ -34,7 +34,7 @@ public class CodeGenerator {
         GlobalConfig gc = new GlobalConfig();
         String projectPath = System.getProperty("user.dir");
         //更换为绝对路径
-        gc.setOutputDir("F:\\IdeaFile\\IdeaFile1\\bishe_parent\\service\\service_edu" + "/src/main/java");
+        gc.setOutputDir("F:\\IdeaFile\\IdeaFile1\\bishe_parent\\service\\service_cms" + "/src/main/java");
         gc.setAuthor("testjava");
         gc.setOpen(false); //生成后是否打开资源管理器
         gc.setFileOverride(false); //重新生成时文件是否覆盖
@@ -66,7 +66,7 @@ public class CodeGenerator {
 
         // 5、策略配置
         StrategyConfig strategy = new StrategyConfig();
-        strategy.setInclude("edu_teacher");
+        strategy.setInclude("crm_banner");//数据库中的表
         strategy.setNaming(NamingStrategy.underline_to_camel);//数据库表映射到实体的命名策略
         strategy.setTablePrefix(pc.getModuleName() + "_"); //生成实体时去掉表前缀
 
@@ -77,7 +77,6 @@ public class CodeGenerator {
         strategy.setControllerMappingHyphenStyle(true); //url中驼峰转连字符
 
         mpg.setStrategy(strategy);
-
 
         // 6、执行
         mpg.execute();

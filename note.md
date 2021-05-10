@@ -1,0 +1,2 @@
+common是公共模块，common中common_utils是为了返回统一命名的，在下面整个service中可能都会用到
+所以依赖加到service顶级的模块的依赖中，而service_base中目前只是处理的是异常以及swagger测试，所以

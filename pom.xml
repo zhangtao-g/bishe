@@ -39,7 +39,7 @@
 <!--        <aliyun-java-vod-upload.version>1.4.12</aliyun-java-vod-upload.version>-->
         <aliyun-sdk-vod-upload.version>1.4.11</aliyun-sdk-vod-upload.version>
         <fastjson.version>1.2.28</fastjson.version>
-        <gson.version>2.2.4</gson.version>
+        <gson.version>2.6.2</gson.version>
         <json.version>20170516</json.version>
         <commons-dbutils.version>1.7</commons-dbutils.version>
         <canal.client.version>1.1.0</canal.client.version>
@@ -47,8 +47,26 @@
         <cloud-alibaba.version>0.2.2.RELEASE</cloud-alibaba.version>
     </properties>
 
+
     <dependencyManagement>
         <dependencies>
+            <!--   项目热部署
+
+              在相应的springboot中已经部署了
+                   添加依赖1.spring-boot-devtools
+                    在plugin中2.spring-boot-maven-plugin
+
+                   -->
+            <!--添加热部署-->
+<!--            <dependency>-->
+<!--                <groupId>org.springframework.boot</groupId>-->
+<!--                <artifactId>spring-boot-devtools</artifactId>-->
+<!--                <optional>true</optional>-->
+<!--                <scope>true</scope>-->
+<!--            </dependency>-->
+
+
+
             <!--Spring Cloud-->
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
@@ -152,6 +170,7 @@
                 <artifactId>aliyun-sdk-oss</artifactId>
                 <version>${aliyun-sdk-oss.version}</version>
             </dependency>
+
             <dependency>
                 <groupId>com.aliyun</groupId>
                 <artifactId>aliyun-java-sdk-vod</artifactId>
@@ -196,6 +215,15 @@
     </dependencyManagement>
     <build>
         <plugins>
+<!--            <plugin>-->
+<!--                &lt;!&ndash;热部署配置&ndash;&gt;-->
+<!--                <groupId>org.springframework.boot</groupId>-->
+<!--                <artifactId>spring-boot-maven-plugin</artifactId>-->
+<!--                <configuration>-->
+<!--                    &lt;!&ndash;fork:如果没有该项配置,整个devtools不会起作用&ndash;&gt;-->
+<!--                    <fork>true</fork>-->
+<!--                </configuration>-->
+<!--            </plugin>-->
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
@@ -210,5 +238,4 @@
             </plugin>
         </plugins>
     </build>
-
 </project>
