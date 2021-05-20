@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.*;
  * @author testjava
  * @since 2021-05-08
  */
-@CrossOrigin
+//@CrossOrigin
 @RestController
 @RequestMapping("/educrm/adminbanner")
 public class CrmAdminBannerController {

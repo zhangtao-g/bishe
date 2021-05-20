@@ -34,7 +34,7 @@ public class CodeGenerator {
         GlobalConfig gc = new GlobalConfig();
         String projectPath = System.getProperty("user.dir");
         //更换为绝对路径
-        gc.setOutputDir("F:\\IdeaFile\\IdeaFile1\\bishe_parent\\service\\service_ucenter" + "/src/main/java");
+        gc.setOutputDir("F:\\IdeaFile\\IdeaFile1\\bishe_parent\\service\\service_statistics" + "/src/main/java");
         gc.setAuthor("ZhangTao");
         gc.setOpen(false); //生成后是否打开资源管理器
         gc.setFileOverride(false); //重新生成时文件是否覆盖
@@ -66,9 +66,9 @@ public class CodeGenerator {
 
         // 5、策略配置
         StrategyConfig strategy = new StrategyConfig();
-        strategy.setInclude("ucenter_member");//数据库中的表
+        strategy.setInclude("statistics_daily");//数据库中的表
         strategy.setNaming(NamingStrategy.underline_to_camel);//数据库表映射到实体的命名策略
-        strategy.setTablePrefix(pc.getModuleName() + "_"); //生成实体时去掉表前缀
+//        strategy.setTablePrefix("t" + "_"); //生成实体时去掉表前缀
 
         strategy.setColumnNaming(NamingStrategy.underline_to_camel);//数据库表字段映射到实体的命名策略
         strategy.setEntityLombokModel(true); // lombok 模型 @Accessors(chain = true) setter链式操作

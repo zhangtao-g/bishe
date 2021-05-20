@@ -1,10 +1,15 @@
 package com.zt.edu.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.sun.deploy.xml.GeneralEntity;
 import com.zt.edu.entity.Course;
 import com.zt.edu.entity.CourseDescription;
 import com.zt.edu.entity.vo.CourseInfoVo;
 import com.zt.edu.entity.vo.CoursePublishVo;
+import com.zt.edu.entity.vo.frontVo.CourseFrontVo;
+import com.zt.edu.entity.vo.frontVo.CourseWebVo;
+import com.zt.edu.entity.vo.frontVo.StatusVo;
 import com.zt.edu.mapper.CourseMapper;
 import com.zt.edu.service.ChapterService;
 import com.zt.edu.service.CourseDescriptionService;
@@ -16,8 +21,13 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -52,7 +62,6 @@ public class CourseServiceImpl extends ServiceImpl<CourseMapper, Course> impleme
      */
     @Override
     public String saveCourseInfo(CourseInfoVo courseInfoVo) {
-
 
         //1.向课程表中添加信息
         //将courseinfovo中的信息转换为course
@@ -152,4 +161,70 @@ public class CourseServiceImpl extends ServiceImpl<CourseMapper, Course> impleme
             throw  new GuliException(20001,"删除失败");
         }
     }
+
+//    条件查询
+    @Override
+    public Map<String, Object> pageListWeb(Page<Course> pageParam, CourseFrontVo courseQuery) {
+        //根据讲师id查询所有课程
+        QueryWrapper<Course> queryWrapper = new QueryWrapper<>();
+        if (!StringUtils.isEmpty(courseQuery.getSubjectParentId())) {
+            queryWrapper.eq("subject_parent_id", courseQuery.getSubjectParentId());
+        }
+
+        if (!StringUtils.isEmpty(courseQuery.getSubjectId())) {
+            queryWrapper.eq("subject_id", courseQuery.getSubjectId());
+        }
+
+        if (!StringUtils.isEmpty(courseQuery.getBuyCountSort())) {
+            queryWrapper.orderByDesc("buy_count");
+        }
+
+        if (!StringUtils.isEmpty(courseQuery.getGmtCreateSort())) {
+            queryWrapper.orderByDesc("gmt_create");
+        }
+
+        if (!StringUtils.isEmpty(courseQuery.getPriceSort())) {
+            queryWrapper.orderByDesc("price");
+        }
+
+        baseMapper.selectPage(pageParam, queryWrapper);
+
+        List<Course> records = pageParam.getRecords();
+        long current = pageParam.getCurrent();
+        long pages = pageParam.getPages();
+        long size = pageParam.getSize();
+        long total = pageParam.getTotal();
+        boolean hasNext = pageParam.hasNext();
+        boolean hasPrevious = pageParam.hasPrevious();
+
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("items", records);
+        map.put("current", current);
+        map.put("pages", pages);
+        map.put("size", size);
+        map.put("total", total);
+        map.put("hasNext", hasNext);
+        map.put("hasPrevious", hasPrevious);
+
+        return map;
+    }
+
+    @Override
+    public CourseWebVo getBaseCourseInfo(String courseId) {
+        return baseMapper.getBaseCourseInfo(courseId);
+    }
+
+//    @Override
+//    public boolean isBuyCourse(String courseId, String memberId) {
+//
+//      StatusVo vo = baseMapper.isBuy(courseId,memberId);
+//        System.out.println(vo.getStatus());
+//        System.out.println(vo.getStatus().toString());
+//        if(vo.getStatus().toString()=="1"){
+//            return true;
+//        }
+//        return false;
+//    }
+
+
 }

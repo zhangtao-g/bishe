@@ -122,4 +122,11 @@ public class UcenterMemberServiceImpl extends ServiceImpl<UcenterMemberMapper, U
         return member;
 
     }
+
+    @Override
+    public Integer ucenterMemberService(String day) {
+
+
+        return baseMapper.ucenterMemberService(day);
+    }
 }

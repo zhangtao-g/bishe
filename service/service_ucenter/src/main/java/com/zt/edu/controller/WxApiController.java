@@ -28,7 +28,6 @@ import java.util.HashMap;
  * http://localhost:8150/api/ucenter/wx/callback?code=031y7v0w3cXvlW2GvG0w3UOAqY3y7v0Q&state=atguigu
  */
 
-@CrossOrigin
 @Controller//注意这里没有配置 @RestController
 @RequestMapping("/api/ucenter/wx")
 public class WxApiController {

@@ -3,9 +3,11 @@ package com.zt.edu.controller;
 
 import com.zt.commonutils.JwtUtils;
 import com.zt.commonutils.UnResult;
+import com.zt.commonutils.ordervo.UcenterMemberOrder;
 import com.zt.edu.entity.UcenterMember;
 import com.zt.edu.entity.vo.RegisterVo;
 import com.zt.edu.service.UcenterMemberService;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,7 +24,6 @@ import java.rmi.server.UnicastRemoteObject;
  */
 @RestController
 @RequestMapping("/educenter/ucenter")
-@CrossOrigin
 public class UcenterMemberController {
 
 
@@ -55,6 +56,26 @@ public class UcenterMemberController {
         return UnResult.ok().data("userInfo",ucenterMember);
     }
 
+    /**
+     * 支付功能
+     * 根据用户id获取用户信息
+     */
+    @PostMapping("getUserInfoOrder/{id}")
+    public UcenterMemberOrder getUserInfoOrder(@PathVariable String id){
+        UcenterMember member=ucenterMemberService.getById(id);
+        //把member对象里的值传入新建的UcenterMemberOrder里
+        UcenterMemberOrder ucenterMemberOrder=new UcenterMemberOrder();
+        BeanUtils.copyProperties(member,ucenterMemberOrder);
+
+        return ucenterMemberOrder;
+    }
+
+    //查询某一天的人数
+    @GetMapping("countRegister/{day}")
+    public UnResult countRegister(@PathVariable String day){
+        Integer count = ucenterMemberService.ucenterMemberService(day);
+        return UnResult.ok().data("countRegister",count);
+    }
 
 }
 

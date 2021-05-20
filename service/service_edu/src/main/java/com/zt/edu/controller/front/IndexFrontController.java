@@ -21,7 +21,6 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/eduservice/indexfront")
-@CrossOrigin//解决跨域问题
 public class IndexFrontController {
 
 

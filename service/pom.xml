@@ -18,9 +18,20 @@
         <module>service_cms</module>
         <module>service_msm</module>
         <module>service_ucenter</module>
+        <module>service_order</module>
+        <module>service_statistics</module>
+        <module>service_acl</module>
     </modules>
     <dependencies>
-<!--        引入公共模块-->
+        <!--eureka服务注册发现 客户端-->
+<!--        <dependency>-->
+<!--            <groupId>org.springframework.cloud</groupId>-->
+<!--            <artifactId>spring-cloud-starter-eureka</artifactId>-->
+<!--            <version>1.3.0.RELEASE</version>-->
+<!--        </dependency>-->
+
+
+        <!--        引入公共模块-->
         <dependency>
             <groupId>com.zt</groupId>
             <artifactId>common_utils</artifactId>

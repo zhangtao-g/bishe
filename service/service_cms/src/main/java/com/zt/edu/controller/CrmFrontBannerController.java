@@ -20,8 +20,7 @@ import java.util.List;
  * @author testjava
  * @since 2021-05-08
  */
-@CrossOrigin
-
+//@CrossOrigin
 @RestController
 @RequestMapping("/educrm/frontbanner")
 public class CrmFrontBannerController {

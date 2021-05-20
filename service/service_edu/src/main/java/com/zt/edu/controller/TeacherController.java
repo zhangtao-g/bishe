@@ -23,7 +23,6 @@ import java.util.List;
  * @author testjava
  * @since 2021-04-08
  */
-@CrossOrigin//解决跨域问题
 
 @RestController
 //设置请求父路径/edu/teacher

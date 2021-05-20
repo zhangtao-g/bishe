@@ -10,7 +10,6 @@ import com.zt.edu.service.TeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.rmi.server.UnicastRemoteObject;
 import java.util.List;
 import java.util.Map;
 
@@ -20,17 +19,19 @@ import java.util.Map;
  * @note:
  */
 
-
 @RestController
 @RequestMapping("/eduservice/teacherfront")
-@CrossOrigin
+
 public class TeacherFrontController {
 
 
     @Autowired
     private TeacherService teacherService;
 
+    @Autowired
     private CourseService courseService;
+
+
 
     //分页查询讲师的方法
     @PostMapping("getTeacherFrontList/{page}/{limit}")
@@ -51,10 +52,12 @@ public class TeacherFrontController {
         Teacher teacher=teacherService.getById(teacherId);
         //2.根据讲师id查询课程
         System.out.println("teacher"+teacher);
+
+
         QueryWrapper<Course> wrapper=new QueryWrapper<>();
         wrapper.eq("teacher_id",teacherId);
         List<Course> courseList=courseService.list(wrapper);
-        System.out.println("courseList"+courseList);
+        System.out.println(courseList);
         return UnResult.ok().data("teacher",teacher).data("courseList",courseList);
     }
 

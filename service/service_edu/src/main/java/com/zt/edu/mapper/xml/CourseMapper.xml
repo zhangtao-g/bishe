@@ -17,4 +17,28 @@
 
 
     </select>
+    <select id="getBaseCourseInfo" resultType="com.zt.edu.entity.vo.frontVo.CourseWebVo">
+          select ec.id,ec.title,ec.price,ec.lesson_num AS lessonNum,ec.cover,ec.buy_count AS buyCount,ec.view_count AS viewCount,ecd.description,
+	 et.id AS teacherId,et.name AS TeacherName,et.intro,et.avatar,
+	 es1.id AS subjectLevelOneId, es1.title AS subjectLevelOne,
+	 es2.id AS subjectLevelTwoId, es2.title AS subjectLevelTwo,
+                et.name AS teacherName,
+                es1.title AS subjectLevelOne,
+                es2.title AS subjectLevelTwo
+        from edu_course ec LEFT outer JOIN edu_course_description ecd on  ec.id=ecd.id
+                            LEFT outer join edu_teacher et ON ec.teacher_id=et.id
+                            LEFT outer join edu_subject es1 on  ec.subject_parent_id=es1.id
+                            LEFT outer  join edu_subject es2 on ec.subject_id=es2.id
+        where ec.id=#{courseId}
+
+
+
+    </select>
+<!--    <select id="isBuy" resultType="com.zt.edu.entity.vo.frontVo.StatusVo">-->
+<!--         select status from-->
+<!--        t_order-->
+<!--        where course_id=#{courseId} and member_id=#{memberId}-->
+
+<!--    </select>-->
+
 </mapper>

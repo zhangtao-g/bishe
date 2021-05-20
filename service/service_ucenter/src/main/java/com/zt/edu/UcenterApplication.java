@@ -13,7 +13,7 @@ import org.springframework.context.annotation.ComponentScan;
  * @note:
  */
 
-
+@EnableDiscoveryClient//Nacos客户端注解
 @SpringBootApplication
 @ComponentScan(basePackages = {"com.zt"})
 @MapperScan("com.zt.edu.mapper")

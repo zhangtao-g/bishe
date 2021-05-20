@@ -9,6 +9,7 @@ import com.aliyuncs.vod.model.v20170321.GetPlayInfoRequest;
 import com.aliyuncs.vod.model.v20170321.GetPlayInfoResponse;
 import com.aliyuncs.vod.model.v20170321.GetVideoPlayAuthRequest;
 import com.aliyuncs.vod.model.v20170321.GetVideoPlayAuthResponse;
+import org.junit.Test;
 
 import java.util.List;
 
@@ -73,6 +74,7 @@ public class TestVod {
     }
 
     //2.根据视频的id获取视频的播放凭证
+    @Test
     public void getPlayAuth()  throws ClientException{
         //创建初始化对象
         DefaultAcsClient client = InitObject.initVodClient("LTAI5tKSbrjRuatoVSMNs9Fk", "yHTcqZgnWTFxoRGkIxcOxefZ1Zmc1H");
@@ -81,7 +83,7 @@ public class TestVod {
         GetVideoPlayAuthResponse response=new GetVideoPlayAuthResponse();
 
         //向request设置视频id
-        request.setVideoId("f983d758bff94358b76ea900ae271f64");
+        request.setVideoId("c8885a5a75794dc68b44afbd972bef63");
 
         //调用初始化对象的方法得到凭证
 

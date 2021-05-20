@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zt.edu.mapper.OrderMapper">
+
+
+    <select id="getCourseInfo" resultType="com.zt.edu.entity.vo.CourseVo">
+
+        select title,cover,name,price
+        from edu_course,edu_teacher
+        where edu_course.teacher_id=edu_teacher.id and
+         edu_course.id=#{courseId}
+
+    </select>
+    <select id="getUcenterInfo" resultType="com.zt.edu.entity.vo.UcenterVo">
+            SELECT  mobile,nickname from ucenter_member
+
+             where id=#{ucenterId}
+
+    </select>
+
+</mapper>
